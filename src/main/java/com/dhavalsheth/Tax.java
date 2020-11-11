@@ -42,10 +42,10 @@ public final class Tax {
      */
     double calculateTax(double price) {
         double tax = (price * this.rate) / 100;
-        return round(tax);
+        return roundUp(tax);
     }
 
-    double round(double amount) {
+    double roundUp(double amount) {
         if ( this.roundUp == 0) {
             return amount;
         }

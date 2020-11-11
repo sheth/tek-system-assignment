@@ -21,15 +21,15 @@ public class TaxTests {
     @DisplayName("rounding disabled")
     void roundingDisabled() {
         taxObject.setRoundUp(0.0);
-        assertEquals(taxObject.round(0.34345), 0.34345);
+        assertEquals(taxObject.roundUp(0.34345), 0.34345);
     }
 
     @Test
     @DisplayName("rounding up to nearest dime")
     void roundingToDime() {
         taxObject.setRoundUp(0.10);
-        assertEquals(taxObject.round(0.34), 0.40);
-        assertEquals(taxObject.round(0.36), 0.40);
+        assertEquals(taxObject.roundUp(0.34), 0.40);
+        assertEquals(taxObject.roundUp(0.36), 0.40);
     }
 
     @ParameterizedTest(name = "round up to nearest nickel {0} = {1}")
@@ -42,7 +42,7 @@ public class TaxTests {
             "0.99,   1.00",
     })
     void round(double amount, double expectedResult) {
-        assertEquals(expectedResult, taxObject.round(amount),
+        assertEquals(expectedResult, taxObject.roundUp(amount),
                 () -> amount + " should equal " + expectedResult);
     }
 
