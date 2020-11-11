@@ -1,6 +1,5 @@
 package com.dhavalsheth;
 
-import java.io.PrintStream;
 import java.util.ArrayList;
 
 public class ShoppingBasket {
@@ -10,56 +9,29 @@ public class ShoppingBasket {
     Tax importDuty = new Tax(5.0, 0.05);
 
     double totalTaxes;
-
     double totalPriceAndTaxes;
-    /**
-    void calculateTotalTaxes() {
-        double totalTax = items.stream().map(n -> {
-            double salesTaxAmount = 0.0;
-            double importDutyAmount = 0.0;
-            double price = n.getPrice();
-
-            if (n.isSalesTaxApplicable()) {
-                salesTaxAmount = salesTax.calculateTax(n.getPrice());
-            }
-
-            if(n.isImportTaxApplicable()) {
-                importDutyAmount = importDuty.calculateTax(n.getPrice());
-            }
-
-            double pricePlusTaxAmount = price + salesTaxAmount + importDutyAmount;
-            n.setPricePlusTax(pricePlusTaxAmount);
-            return salesTaxAmount + importDutyAmount;
-        }).reduce(0.0, Double::sum);
-        this.setTotalTaxes(totalTax);
-
-        double totalAmount = items.stream().map(n -> {
-            return n.getPricePlusTax();
-        }).reduce(0.0, Double::sum);
-        this.setTotalPriceAndTaxes(totalAmount);
-    }**/
 
     void checkout() {
-        double totalTax = 0;
-        double totalAmount = 0;
-        for(SaleItem n: items) {
+        double totalTaxForShoppingBasket = 0;
+        double totalAmountForShoppingBasket = 0;
+        for (SaleItem n : items) {
             double salesTaxAmount = 0.0;
             double importDutyAmount = 0.0;
             double price = n.getPrice();
             if (n.isSalesTaxApplicable()) {
                 salesTaxAmount = salesTax.calculateTax(price);
-                totalTax += salesTaxAmount;
+                totalTaxForShoppingBasket += salesTaxAmount;
             }
-            if(n.isImportTaxApplicable()) {
+            if (n.isImportTaxApplicable()) {
                 importDutyAmount = importDuty.calculateTax(price);
-                totalTax += importDutyAmount;
+                totalTaxForShoppingBasket += importDutyAmount;
             }
             double pricePlusTaxAmount = price + salesTaxAmount + importDutyAmount;
             n.setPricePlusTax(pricePlusTaxAmount);
-            totalAmount += pricePlusTaxAmount;
+            totalAmountForShoppingBasket += pricePlusTaxAmount;
         }
-        this.setTotalTaxes(totalTax);
-        this.setTotalPriceAndTaxes(totalAmount);
+        this.setTotalTaxes(totalTaxForShoppingBasket);
+        this.setTotalPriceAndTaxes(totalAmountForShoppingBasket);
     }
 
     public String toString() {
@@ -67,10 +39,6 @@ public class ShoppingBasket {
         items.forEach(each -> builder.append(each.toString()));
         builder.append(String.format("Sales Taxes: %.2f Total: %.2f\n", this.totalTaxes, this.totalPriceAndTaxes));
         return builder.toString();
-    }
-
-    public ArrayList<SaleItem> getItems() {
-        return items;
     }
 
     public void setItems(ArrayList<SaleItem> items) {
@@ -92,5 +60,4 @@ public class ShoppingBasket {
     public void setTotalPriceAndTaxes(double totalPriceAndTaxes) {
         this.totalPriceAndTaxes = Math.round(totalPriceAndTaxes * 100.0) / 100.0;
     }
-
 }
