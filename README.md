@@ -6,7 +6,13 @@ Started this application from junit5-jupiter-starter-gradle folder within https:
 
 That project had a calculator class with add function and a test suite.
 
-Removed those two classes and started coding for the assignment. 
+Removed those two classes and started coding for the assignment which is stated at the end.
+
+With JRE 14 and gradle v6.7, the following commands should work 
+<pre>
+./gradlew test 
+./gradlew run
+</pre>  
  
 Problem: Sales Taxes
 Basic sales tax is applicable at a rate of 10% on all goods, 
