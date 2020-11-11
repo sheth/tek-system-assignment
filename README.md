@@ -13,6 +13,10 @@ With JRE 14 and gradle v6.7, the following commands should work
 ./gradlew test 
 ./gradlew run
 </pre>  
+or
+<pre>
+java -cp ./build/classes/java/main com.dhavalsheth.Main
+</pre>
  
 Problem: Sales Taxes
 Basic sales tax is applicable at a rate of 10% on all goods, 
