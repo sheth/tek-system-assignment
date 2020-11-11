@@ -1,7 +1,5 @@
 package com.dhavalsheth;
 
-import java.io.PrintStream;
-
 public class SaleItem {
 
     private final String name;
@@ -62,8 +60,7 @@ public class SaleItem {
         }
         //Return the finally constructed SalesItem object
         public SaleItem build() {
-            SaleItem item =  new SaleItem(this);
-            return item;
+            return new SaleItem(this);
         }
     }
 }

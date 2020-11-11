@@ -14,16 +14,8 @@ public final class Tax {
         this.roundUp = roundUp;
     }
 
-    public double getRate() {
-        return rate;
-    }
-
     public void setRate(double rate) {
         this.rate = rate;
-    }
-
-    public double getRoundUp() {
-        return roundUp;
     }
 
     public void setRoundUp(double roundUp) {
